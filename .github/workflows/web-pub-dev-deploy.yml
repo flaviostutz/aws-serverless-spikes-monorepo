@@ -7,7 +7,7 @@ on:
       - web/pub/**
 
 jobs:
-  web-app-dev-deploy:
+  deploy:
     name: Web pub dev deploy
     uses: flaviostutz/gh-workflows-serverless/.github/workflows/sls-deploy.yml@main
     with:

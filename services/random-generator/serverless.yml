@@ -1,0 +1,48 @@
+service: upload-service
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  lambdaHashingVersion: 20201221
+  # stackName: ${self:service}-${self:provider.stage}
+  environment:
+    AWS_LAMBDA_EXEC_WRAPPER: /opt/otel-handler
+  timeout: 30
+  logRetentionInDays: 7
+  tracing:
+    lambda: true
+
+package:
+  individually: true
+
+functions:
+  get-random-number:
+    handler: src/handlers/random-number/index.handler
+    events:
+      - http:
+          path: /random/number
+          method: get
+    layers:
+      - arn:aws:lambda:eu-west-1:901920570463:layer:aws-otel-nodejs-amd64-ver-1-2-0:1
+
+plugins:
+  - serverless-esbuild
+  - serverless-offline
+  - serverless-prune-plugin
+  
+custom:
+  esbuild:
+    minify: false
+    bundle: true
+    sourcemap: true
+    watch:
+      pattern:
+        ['src/**/*.ts']
+      ignore: ['.serverless/**/*', '.build', '.esbuild']
+    packager: npm
+
+  prune:
+    automatic: true
+    number: 3
+

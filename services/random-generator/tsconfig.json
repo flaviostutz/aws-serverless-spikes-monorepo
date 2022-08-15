@@ -1,0 +1,16 @@
+{
+    "compilerOptions": {
+      "lib": ["es2020", "dom"],
+      "module": "CommonJS",
+      "esModuleInterop": true,
+      "isolatedModules": true,
+      "resolveJsonModule": true,
+      "downlevelIteration": true,
+      "moduleResolution": "Node",
+      "baseUrl": ".",
+      "paths": {
+        "src/*": ["./src/*"]
+      }
+    }
+  }
+  
