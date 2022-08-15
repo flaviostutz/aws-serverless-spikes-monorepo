@@ -1,0 +1,17 @@
+name: sls-pr-deploy
+
+on:
+  pull_request:
+
+jobs:
+  sls-pr-deploy:
+    name: Deploy PR environment
+    uses: flaviostutz/gh-workflows-serverless/.github/workflows/sls-deploy.yml@main
+    with:
+      stage: pr${{ github.event.number }}
+      workdir: ./
+      AWS_DEFAULT_REGION: us-east-1
+      environment: dev
+    secrets:
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}

@@ -1,0 +1,20 @@
+{
+  "name": "simple-static",
+  "version": "1.0.0",
+  "description": "",
+  "main": "handler.js",
+  "scripts": {
+    "lint": "echo \"no linting. ignoring\" && exit 0",
+    "test": "echo \"no tests. ignoring\" && exit 0",
+    "package": "sls package",
+    "deploy": "sls deploy",
+    "remove": "sls remove",
+    "info": "sls print --path custom"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "serverless-s3-sync": "^3.0.0",
+    "serverless": "^3.21.0"
+  }
+}

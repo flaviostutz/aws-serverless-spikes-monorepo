@@ -1,0 +1,20 @@
+name: web-pub-dev-deploy
+
+on:
+  push:
+    branches: [ "main" ]
+    paths:
+      - web/pub/**
+
+jobs:
+  web-app-dev-deploy:
+    name: Web pub dev deploy
+    uses: flaviostutz/gh-workflows-serverless/.github/workflows/sls-deploy.yml@main
+    with:
+      stage: dev
+      workdir: ./web/pub/
+      AWS_DEFAULT_REGION: us-east-1
+      environment: dev
+    secrets:
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
