@@ -21,7 +21,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "echo \"no linting. ignoring\" && exit 0",
-    "package": "react-scripts build && sls package && cp -r build .serverless/",
+    "package": "react-scripts build && sls package",
     "deploy": "sls deploy",
     "remove": "sls remove",
     "info": "sls print --path custom"
