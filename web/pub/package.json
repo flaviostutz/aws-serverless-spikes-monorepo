@@ -6,7 +6,7 @@
   "scripts": {
     "lint": "echo \"no linting. ignoring\" && exit 0",
     "test": "echo \"no tests. ignoring\" && exit 0",
-    "package": "sls package",
+    "package": "sls package && cp -r static .serverless/",
     "deploy": "sls deploy",
     "remove": "sls remove",
     "info": "sls print --path custom"
