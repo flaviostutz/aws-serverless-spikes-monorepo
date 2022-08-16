@@ -6,3 +6,5 @@ import {handler} from './handler';
 module.exports = {
   handler,
 };
+
+// export {handler} from './handler';
