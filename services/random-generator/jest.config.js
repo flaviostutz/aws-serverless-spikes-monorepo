@@ -13,7 +13,7 @@ module.exports = {
   collectCoverageFrom: ["./src/**"],
   coverageThreshold: {
     global: {
-      lines: 20,
+      lines: 5,
     },
   },
 };
