@@ -1,4 +1,4 @@
-import {APIGatewayProxyEvent, APIGatewayProxyResult} from 'aws-lambda';
+import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda';
 import middy from '@middy/core';
 import jsonBodyParser from '@middy/http-json-body-parser';
 import httpHeaderNormalizer from '@middy/http-header-normalizer';
@@ -8,10 +8,9 @@ async function lambdaHandler(event: APIGatewayProxyEvent): Promise<APIGatewayPro
   // the returned response will be checked against the type `APIGatewayProxyResult`
   console.log(event.body);
 
-  // const response = await fetch('https://api.github.com/users/github');
   return {
     statusCode: 200,
-    body: JSON.stringify({number: Math.random() * 99999}),
+    body: JSON.stringify({ number: Math.random() * 99999 }),
   };
 }
 
