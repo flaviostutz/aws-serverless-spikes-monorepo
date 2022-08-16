@@ -5,17 +5,19 @@ Serverless Framework application using a monorepo with Web, API and NodeJS backe
 ## Javascript tooling
 
 * Linting:
-  * `tsc` for typescript type checks
-  * `eslint` for checking code conventions
+  * `eslint` for checking code conventions and auto formatting
     * uses .eslintrc
+  * `tsc` for typescript type checks
 
 * Compiling and bundling:
   * `esbuild`
     * uses tsconfig.json
 
+* Test
+  * `Jest` for unit tests
+
 * Coding
   * VSCode as main tool
-  * `prettier` for formatting code according to ESLint conventions
   * VSCode plugin [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
 
 ## References
