@@ -3,17 +3,17 @@
   "parser": "@typescript-eslint/parser",
   "plugins": [
     "@typescript-eslint",
-    "jest",
-    "prettier"
+    "jest"
   ],
   "extends": [
     "plugin:@shopify/typescript", 
     "plugin:@shopify/esnext",
     "plugin:@shopify/node"
-    // "google"
-    // "airbnb",
     // "eslint:recommended",
     // "plugin:@typescript-eslint/eslint-recommended",
     // "plugin:@typescript-eslint/recommended"
-  ]
+  ],
+  "rules": {
+    "require-await": "off"
+  }
 }

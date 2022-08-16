@@ -8,9 +8,7 @@ async function lambdaHandler(event: APIGatewayProxyEvent): Promise<APIGatewayPro
   console.log(event.body);
   return {
     statusCode: 200,
-    body: JSON.stringify({
-      number: Math.random() * 99999,
-    }),
+    body: JSON.stringify({number: Math.random() * 99999}),
   };
 }
 
