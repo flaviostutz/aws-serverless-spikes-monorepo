@@ -2,6 +2,13 @@
 
 Serverless Framework application using a monorepo with Web, API and NodeJS backend with DB and PR deployments orchestrated by Github Actions
 
+## Creating a new service or web site
+
+* Duplicate and rename the folder of an existing service
+* Delete files under src/
+* Change serverless.yml service name and contents
+* Duplicate and rename the workflow file on .github/workflows from an existing service
+
 ## Javascript tooling
 
 * Linting:

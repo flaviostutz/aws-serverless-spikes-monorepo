@@ -1,0 +1,20 @@
+name: services-todo-dev-deploy
+
+on:
+  push:
+    branches: [ "main" ]
+    paths:
+      - services/todo/**
+
+jobs:
+  deploy:
+    name: Service todo dev deploy
+    uses: flaviostutz/gh-workflows-serverless/.github/workflows/sls-deploy.yml@main
+    with:
+      stage: dev
+      workdir: ./services/todo/
+      AWS_DEFAULT_REGION: us-east-1
+      environment: dev
+    secrets:
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}

@@ -1,4 +1,4 @@
-service: random-generator
+service: todo-service
 frameworkVersion: '3'
 
 provider:
@@ -18,19 +18,19 @@ package:
   individually: true
 
 functions:
-  get-random-number:
-    handler: src/handlers/random-number/index.handler
+  get-todo-list:
+    handler: src/handlers/get-todo-list/index.handler
     events:
       - http:
-          path: /random/number
+          path: /todo
           method: get
 
-  get-random-user:
-    handler: src/handlers/random-user/index.handler
+  post-todo:
+    handler: src/handlers/post-todo/index.handler
     events:
       - http:
-          path: /random/user
-          method: get
+          path: /todo
+          method: post
 
 plugins:
   - serverless-esbuild
