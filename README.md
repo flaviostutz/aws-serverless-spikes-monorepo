@@ -5,15 +5,16 @@ Serverless Framework application using a monorepo with Web, API and NodeJS backe
 ## Creating a new service or web site
 
 * Duplicate and rename the folder of an existing service
-* Delete files under src/
-* Change serverless.yml service name and contents
+* Change src files, serverless.yml service name and contents
 * Duplicate and rename the workflow file on .github/workflows from an existing service
 
 ## Javascript tooling
 
+* The selected tools is the state of the art, minimal and productive set we could find at Aug-2022
+
 * Linting:
   * `eslint` for checking code conventions and auto formatting
-    * uses .eslintrc
+    * uses .eslintrc.js, which imports a shared rule set among all services
   * `tsc` for typescript type checks
 
 * Compiling and bundling:
@@ -33,6 +34,3 @@ Serverless Framework application using a monorepo with Web, API and NodeJS backe
 
 * <https://khalilstemmler.com/blogs/typescript/eslint-for-typescript/>
 
-* <https://khalilstemmler.com/blogs/tooling/prettier/>
-
-* <https://prettier.io/docs/en/install.html>
