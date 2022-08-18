@@ -1,18 +1,18 @@
-name: web-app-dev-deploy
+name: web-todo-dev-deploy
 
 on:
   push:
     branches: [ "main" ]
     paths:
-      - web/app/**
+      - web/todo/**
 
 jobs:
   deploy:
-    name: Web app dev deploy
+    name: Web todo dev deploy
     uses: flaviostutz/gh-workflows-serverless/.github/workflows/sls-deploy.yml@main
     with:
       stage: dev
-      workdir: ./web/app/
+      workdir: ./web/todo/
       AWS_DEFAULT_REGION: us-east-1
       environment: dev
     secrets:

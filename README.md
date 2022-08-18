@@ -8,7 +8,7 @@ Serverless Framework application using a monorepo with Web, API and NodeJS backe
 * Change src files, serverless.yml service name and contents
 * Duplicate and rename the workflow file on .github/workflows from an existing service
 
-## Javascript tooling
+## Tooling
 
 * The selected tools is the state of the art, minimal and productive set we could find at Aug-2022
 
@@ -25,8 +25,19 @@ Serverless Framework application using a monorepo with Web, API and NodeJS backe
   * `Jest` for unit tests
 
 * Coding
-  * VSCode as main tool
-  * VSCode plugin [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
+  * [VSCode](https://code.visualstudio.com/download) as main tool with plugins:
+    * [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) for showing and formatting ESlint rules
+    * [File Nesting](https://marketplace.visualstudio.com/items?itemName=antfu.file-nesting)
+
+## Pipelines
+
+* Github actions
+* In general
+  * When a PR is created, a preview environment is deployed to AWS
+  * When something is merged to "main" (through a PR merge), a "dev" environment is deployed to AWS
+  * When a tag is created, a deployment is started to "production" in AWS, but normally you need to authorize the deployment manually
+* Each service/web site have its own workflow configured in ".github/workflow". Check the files for details
+* After a deployment is done, the base URL for the service is usually shown in the job details
 
 ## References
 

@@ -1,0 +1,81 @@
+service: cognito-service
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  lambdaHashingVersion: 20201221
+  timeout: 10
+  memorySize: 128
+  logRetentionInDays: 7
+  tags:
+    GITHUB_ACTOR: ${env:GITHUB_ACTOR}
+    GITHUB_REF: ${env:GITHUB_REF}
+    GITHUB_COMMIT_URL: http://github.com/${env:GITHUB_REPOSITORY}/commit/${env:GITHUB_SHA}
+    GITHUB_ACTION_URL: http://github.com/${env:GITHUB_REPOSITORY}/actions/runs/${env:GITHUB_RUN_ID}/attempts/${env:GITHUB_RUN_ATTEMPT}
+  tracing:
+    lambda: true
+    apiGateway: true
+  layers:
+    - arn:aws:lambda:us-east-1:901920570463:layer:aws-otel-nodejs-amd64-ver-1-2-0:1
+  environment:
+    AWS_LAMBDA_EXEC_WRAPPER: /opt/otel-handler
+
+package:
+  individually: true
+
+resources:
+  # https://medium.com/@Da_vidgf/using-cognito-for-users-management-in-your-serverless-application-1695fec9e225
+  CognitoUserPool:
+    Type: AWS::Cognito::UserPool
+    Properties:
+      MfaConfiguration: OFF
+      UserPoolName: my-user-pool
+      UsernameAttributes:
+        - email
+      Policies:
+        PasswordPolicy:
+          MinimumLength: 6
+          RequireLowercase: False
+          RequireNumbers: False
+          RequireSymbols: False
+          RequireUppercase: False
+  CognitoUserPoolClient:
+    Type: AWS::Cognito::UserPoolClient
+    Properties:
+      ClientName: my-user-pool-client
+      GenerateSecret: True
+      UserPoolId:
+        Ref: CognitoUserPool
+  ApiGatewayAuthorizer:
+    DependsOn:
+      - ApiGatewayRestApi
+    Type: AWS::ApiGateway::Authorizer
+    Properties:
+      Name: cognito-authorizer
+      IdentitySource: method.request.header.Authorization
+      RestApiId:
+        Ref: ApiGatewayRestApi
+      Type: COGNITO_USER_POOLS
+      ProviderARNs:
+        - Fn::GetAtt: [CognitoUserPool, Arn]
+parei aqui
+plugins:
+  - serverless-esbuild
+  - serverless-offline
+  - serverless-prune-plugin
+
+custom:
+  esbuild:
+    minify: false
+    bundle: true
+    sourcemap: true
+    watch:
+      pattern:
+        ['src/**/*.ts']
+      ignore: ['.serverless/**/*', '.build', '.esbuild']
+
+  prune:
+    automatic: true
+    number: 3
+
