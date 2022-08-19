@@ -1,4 +1,4 @@
-- name: error-response
+- name: errorResponse
   # description: "This is an error"
   contentType: "application/json"
   schema:
@@ -9,7 +9,7 @@
       message:
         type: string
 
-- name: random-number-response
+- name: randomNumberResponse
   description: "Generated random number"
   contentType: "application/json"
   schema:

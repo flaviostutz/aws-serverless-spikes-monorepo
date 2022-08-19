@@ -91,7 +91,7 @@ functions:
                 # responseBody:
                 #   description: "Generated random number"
                 responseModels:
-                  application/json: random-number-response
+                  application/json: randomNumberResponse
 
   get-random-user:
     handler: src/handlers/random-user/index.handler
