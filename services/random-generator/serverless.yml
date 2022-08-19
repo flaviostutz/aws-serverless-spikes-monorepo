@@ -38,10 +38,10 @@ provider:
 
 resources:
   Resources:
-    xMyRequestValidator:
+    RequestValidator:
       Type: AWS::ApiGateway::RequestValidator
       Properties:
-        Name: req-validator
+        Name: reqValidator
         RestApiId: 
           Ref: ApiGatewayRestApi
         ValidateRequestBody: true
@@ -59,7 +59,7 @@ functions:
           method: get
           cors: true # if not present, doc plugin fails
           private: true
-          reqValidatorName: req-validator
+          reqValidatorName: reqValidator
           documentation:
             summary: "Generate random number"
             description: "Genenerates a random number based on a simple JS seed"
@@ -100,6 +100,7 @@ functions:
           path: /random/user
           method: get
           cors: true
+          reqValidatorName: reqValidator
           private: true
           documentation:
             summary: "Generate random number"
