@@ -59,7 +59,7 @@ functions:
           method: get
           cors: true # if not present, doc plugin fails
           private: true
-          reqValidatorName: reqValidator
+          reqValidatorName: RequestValidator
           documentation:
             summary: "Generate random number"
             description: "Genenerates a random number based on a simple JS seed"
@@ -100,7 +100,7 @@ functions:
           path: /random/user
           method: get
           cors: true
-          reqValidatorName: reqValidator
+          reqValidatorName: RequestValidator
           private: true
           documentation:
             summary: "Generate random number"
@@ -112,8 +112,8 @@ functions:
 plugins:
   - serverless-esbuild
   - serverless-prune-plugin
-  - serverless-v2-aws-documentation
   - serverless-reqvalidator-plugin
+  - serverless-v2-aws-documentation
   - serverless-offline
   
 custom:	
