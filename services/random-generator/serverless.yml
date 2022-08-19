@@ -107,7 +107,7 @@ functions:
             methodResponses:
               - statusCode: 200
                 responseModels:
-                  application/json: random-number-response
+                  application/json: randomNumberResponse
 
 plugins:
   - serverless-esbuild
