@@ -47,19 +47,21 @@ resources:
       GenerateSecret: True
       UserPoolId:
         Ref: CognitoUserPool
-  ApiGatewayAuthorizer:
-    DependsOn:
-      - ApiGatewayRestApi
-    Type: AWS::ApiGateway::Authorizer
-    Properties:
-      Name: cognito-authorizer
-      IdentitySource: method.request.header.Authorization
-      RestApiId:
-        Ref: ApiGatewayRestApi
-      Type: COGNITO_USER_POOLS
-      ProviderARNs:
-        - Fn::GetAtt: [CognitoUserPool, Arn]
-parei aqui
+  # add this to the API GW that will be protected
+  # ApiGatewayAuthorizer:
+  #   DependsOn:
+  #     - ApiGatewayRestApi
+  #   Type: AWS::ApiGateway::Authorizer
+  #   Properties:
+  #     Name: cognito-authorizer
+  #     IdentitySource: method.request.header.Authorization
+  #     RestApiId:
+  #       Ref: ApiGatewayRestApi
+  #     Type: COGNITO_USER_POOLS
+  #     ProviderARNs:
+  #       - Fn::GetAtt: [CognitoUserPool, Arn]
+  
+
 plugins:
   - serverless-esbuild
   - serverless-offline

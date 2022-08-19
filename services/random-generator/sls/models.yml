@@ -1,0 +1,22 @@
+- name: error-response
+  # description: "This is an error"
+  contentType: "application/json"
+  schema:
+    $schema: "http://json-schema.org/draft-04/schema#"
+    properties:
+      code:
+        type: number
+      message:
+        type: string
+
+- name: random-number-response
+  description: "Generated random number"
+  contentType: "application/json"
+  schema:
+    $schema: "http://json-schema.org/draft-04/schema#"
+    properties:
+      number:
+        type: number
+      timestamp:
+        type: string
+

@@ -9,10 +9,10 @@ provider:
   memorySize: 128
   logRetentionInDays: 7
   tags:
-    GITHUB_ACTOR: ${env:GITHUB_ACTOR}
-    GITHUB_REF: ${env:GITHUB_REF}
-    GITHUB_COMMIT_URL: http://github.com/${env:GITHUB_REPOSITORY}/commit/${env:GITHUB_SHA}
-    GITHUB_ACTION_URL: http://github.com/${env:GITHUB_REPOSITORY}/actions/runs/${env:GITHUB_RUN_ID}/attempts/${env:GITHUB_RUN_ATTEMPT}
+    GITHUB_ACTOR: ${env:GITHUB_ACTOR, ''}
+    GITHUB_REF: ${env:GITHUB_REF, ''}
+    GITHUB_COMMIT_URL: http://github.com/${env:GITHUB_REPOSITORY, ''}/commit/${env:GITHUB_SHA, ''}
+    GITHUB_ACTION_URL: http://github.com/${env:GITHUB_REPOSITORY, ''}/actions/runs/${env:GITHUB_RUN_ID, ''}/attempts/${env:GITHUB_RUN_ATTEMPT, ''}
   tracing:
     lambda: true
     apiGateway: true
@@ -20,6 +20,32 @@ provider:
     - arn:aws:lambda:us-east-1:901920570463:layer:aws-otel-nodejs-amd64-ver-1-2-0:1
   environment:
     AWS_LAMBDA_EXEC_WRAPPER: /opt/otel-handler
+  # https://towardsdatascience.com/build-a-serverless-api-with-amazon-lambda-and-api-gateway-dfd688510436
+  # https://medium.com/@dorian599/serverless-api-keys-c0ee41528cc9
+  apiGateway:
+    apiKeys:
+      - dev:
+        - dev-key
+    usagePlan:
+      - dev:
+          quota:
+            limit: 1000
+            offset: 1
+            period: DAY
+          throttle:
+            burstLimit: 1
+            rateLimit: 5
+
+resources:
+  Resources:
+    xMyRequestValidator:
+      Type: AWS::ApiGateway::RequestValidator
+      Properties:
+        Name: req-validator
+        RestApiId: 
+          Ref: ApiGatewayRestApi
+        ValidateRequestBody: true
+        ValidateRequestParameters: false 
 
 package:
   individually: true
@@ -31,6 +57,41 @@ functions:
       - http:
           path: /random/number
           method: get
+          cors: true # if not present, doc plugin fails
+          private: true
+          reqValidatorName: req-validator
+          documentation:
+            summary: "Generate random number"
+            description: "Genenerates a random number based on a simple JS seed"
+            # requestBody:
+            #   description: "A user information object"
+            # requestModels:
+            #   application/json: "PutDocumentRequest"
+            # pathParams:
+            #   - name: "username"
+            #     description: "The username for a user to create"
+            #     schema:
+            #       type: "string"
+            #       pattern: "^[-a-z0-9_]+$"
+            # queryParams:
+            #   - name: "membershipType"
+            #     description: "The user's Membership Type"
+            #     schema:
+            #       type: "string"
+            #       enum:
+            #         - "premium"
+            #         - "standard"
+            # cookieParams:
+            #   - name: "SessionId"
+            #     description: "A Session ID variable"
+            #     schema:
+            #       type: "string"
+            methodResponses:
+              - statusCode: 200
+                # responseBody:
+                #   description: "Generated random number"
+                responseModels:
+                  application/json: random-number-response
 
   get-random-user:
     handler: src/handlers/random-user/index.handler
@@ -38,13 +99,30 @@ functions:
       - http:
           path: /random/user
           method: get
+          cors: true
+          private: true
+          documentation:
+            summary: "Generate random number"
+            methodResponses:
+              - statusCode: 200
+                responseModels:
+                  application/json: random-number-response
 
 plugins:
   - serverless-esbuild
-  - serverless-offline
   - serverless-prune-plugin
+  - serverless-v2-aws-documentation
+  - serverless-reqvalidator-plugin
+  - serverless-offline
   
-custom:
+custom:	
+  # https://www.serverless.com/plugins/serverless-openapi-documentation
+  documentation:
+    version: '1'
+    title: 'Random generator API'
+    description: 'Check here how to generate random numbers or random users'
+    models: ${file(sls/models.yml)}
+
   esbuild:
     minify: false
     bundle: true
