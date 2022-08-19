@@ -29,9 +29,9 @@ provider:
     usagePlan:
       - dev:
           quota:
-            limit: 1000
-            offset: 1
-            period: DAY
+            limit: 10000
+            offset: 0
+            period: WEEK
           throttle:
             burstLimit: 1
             rateLimit: 5
