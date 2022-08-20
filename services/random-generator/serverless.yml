@@ -45,7 +45,7 @@ resources:
         RestApiId: 
           Ref: ApiGatewayRestApi
         ValidateRequestBody: true
-        ValidateRequestParameters: false 
+        ValidateRequestParameters: true 
 
 package:
   individually: true
@@ -103,17 +103,32 @@ functions:
           reqValidatorName: RequestValidator
           private: true
           documentation:
-            summary: "Generate random number"
+            summary: Generate a list of random users
+            queryParams:
+              - name: results
+                description: Number of random users to be returned
+                required: false
+                schema:
+                  type: integer,
+                  minimum: 0,
+                  maximum: 150,
+            requestHeaders:
+              - in: header
+                name: x-api-key
+                schema:
+                  type: string
+                required: true
             methodResponses:
               - statusCode: 200
                 responseModels:
-                  application/json: randomNumberResponse
+                  application/json: randomUserResponse
 
 plugins:
   - serverless-esbuild
-  - serverless-prune-plugin
-  - serverless-reqvalidator-plugin
-  - serverless-v2-aws-documentation
+  - serverless-prune-plugin # for removing old lambda versions
+  - serverless-reqvalidator-plugin # for validating request schema
+  - serverless-v2-aws-documentation # for documenting aws api gateway
+  # - serverless-openapi-documentation-v2 # for exporting openapi/swagger
   - serverless-offline
   
 custom:	

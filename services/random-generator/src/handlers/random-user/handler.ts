@@ -7,7 +7,8 @@ import axios from 'axios';
 async function lambdaHandler(event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> {
   console.log(event.body);
 
-  const resp = await axios.get('https://randomuser.me/api/');
+  const { results } = <any>event.queryStringParameters;
+  const resp = await axios.get(`https://randomuser.me/api/?results=${results}`);
 
   return {
     statusCode: 200,

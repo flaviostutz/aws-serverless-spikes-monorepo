@@ -26,6 +26,7 @@
         "serverless": "^3.21.0",
         "serverless-esbuild": "^1.32.6",
         "serverless-offline": "^9.2.1",
+        "serverless-openapi-documentation-v2": "^0.4.6",
         "serverless-prune-plugin": "^2.0.1",
         "serverless-reqvalidator-plugin": "^2.0.0",
         "serverless-v2-aws-documentation": "^2.0.4",
