@@ -55,7 +55,7 @@ functions:
     handler: src/handlers/random-number/index.handler
     events:
       - http:
-          path: /random/number
+          path: random/number
           method: get
           cors: true # if not present, doc plugin fails
           private: true
@@ -97,7 +97,7 @@ functions:
     handler: src/handlers/random-user/index.handler
     events:
       - http:
-          path: /random/user
+          path: random/user
           method: get
           cors: true
           reqValidatorName: RequestValidator
@@ -109,9 +109,9 @@ functions:
                 description: Number of random users to be returned
                 required: false
                 schema:
-                  type: integer,
-                  minimum: 0,
-                  maximum: 150,
+                  type: integer
+                  minimum: 0
+                  maximum: 150
             requestHeaders:
               - in: header
                 name: x-api-key
@@ -122,14 +122,15 @@ functions:
               - statusCode: 200
                 responseModels:
                   application/json: randomUserResponse
+        # VALIDATE SPEC AGAINST INTEGRATION TESTS https://github.com/openapi-library/OpenAPIValidators/tree/master/packages/jest-openapi#readme
 
 plugins:
   - serverless-esbuild
   - serverless-prune-plugin # for removing old lambda versions
+  - serverless-offline
   - serverless-reqvalidator-plugin # for validating request schema
   - serverless-v2-aws-documentation # for documenting aws api gateway
-  # - serverless-openapi-documentation-v2 # for exporting openapi/swagger
-  - serverless-offline
+  - serverless-openapi-documentation-v2 # for exporting openapi/swagger
   
 custom:	
   # https://www.serverless.com/plugins/serverless-openapi-documentation

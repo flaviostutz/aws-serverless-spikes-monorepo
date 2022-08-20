@@ -9,7 +9,8 @@
         "test": "jest",
         "sls:deploy": "sls deploy --verbose",
         "sls:package": "sls package --verbose",
-        "sls:remove": "sls remove --verbose"
+        "sls:remove": "sls remove --verbose",
+        "sls:openapi": "sls openapi generate"
     },
     "devDependencies": {
         "@shopify/eslint-plugin": "^42.0.1",
