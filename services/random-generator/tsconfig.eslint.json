@@ -4,6 +4,7 @@
     "include": [
       "src",
       ".eslintrc.js",
-      "jest.config.js"
+      "jest.config.js",
+      "jest.config.integration.js"
     ]
   }
