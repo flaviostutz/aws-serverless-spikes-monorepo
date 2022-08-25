@@ -8,21 +8,33 @@ provider:
   runtime: nodejs14.x
 
 custom:
-  siteName: www.${sls:stage}.test2.stutz.click
   hostedZoneName: stutz.click
   aliasHostedZoneId: Z3AQBSTGFYJSTF    # us-east-1
   aliasDNSName: s3-website-us-east-1.amazonaws.com
   s3Sync:
-    - bucketName: ${self:custom.siteName}
+    - bucketName: ${param:siteName}
       localDir: static
   scriptable:
     hooks:
       # replace variables in static content
       before:package:createDeploymentArtifacts: ./prepare.sh
 
+
+params:
+  default:
+    siteName: ${sls:stage}.pub1.stutz.click
+  dev:
+    siteName: dev.pub1.stutz.click
+  prd:
+    siteName: pub1.stutz.click
+
 plugins:
   - serverless-s3-sync
   - serverless-scriptable-plugin
+
+outputs:
+  # used by pipeline to set environment url in GH 
+  environment-url: http://${param:siteName}
 
 resources:
   Resources:
@@ -30,7 +42,7 @@ resources:
       Type: AWS::S3::Bucket
       Properties:
         AccessControl: PublicRead
-        BucketName: ${self:custom.siteName}
+        BucketName: ${param:siteName}
         WebsiteConfiguration:
           IndexDocument: index.html
 
