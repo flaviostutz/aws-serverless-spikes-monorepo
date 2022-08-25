@@ -1,6 +1,7 @@
 service: web-pub
 
 frameworkVersion: '3'
+useDotenv: true
 
 provider:
   name: aws
@@ -14,9 +15,14 @@ custom:
   s3Sync:
     - bucketName: ${self:custom.siteName}
       localDir: static
+  scriptable:
+    hooks:
+      # replace variables in static content
+      before:package:createDeploymentArtifacts: ./prepare.sh
 
 plugins:
   - serverless-s3-sync
+  - serverless-scriptable-plugin
 
 resources:
   Resources:

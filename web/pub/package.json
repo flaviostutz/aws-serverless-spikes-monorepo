@@ -14,7 +14,8 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
+    "serverless": "^3.21.0",
     "serverless-s3-sync": "^3.0.0",
-    "serverless": "^3.21.0"
+    "serverless-scriptable-plugin": "^1.2.2"
   }
 }
