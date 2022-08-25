@@ -16,7 +16,7 @@ jobs:
       AWS_DEFAULT_REGION: us-east-1
       environment: dev
       before-package-script: |
-        export CONFIG_RANDOM_API_BASE_URL="https://si1up12817.execute-api.us-east-1.amazonaws.com/dev"
+        export CONFIG_RANDOM_API_BASE_URL="${{ secrets.AWS_ACCESS_KEY_ID }}"
         export CONFIG_RANDOM_API_KEY="QVWv27iOIP6ik9NjkB2ShaShABeKYHgo4Dw9KzLR"
         ./prepare.sh
     secrets:
