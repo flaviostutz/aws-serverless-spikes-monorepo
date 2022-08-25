@@ -14,10 +14,6 @@ custom:
   s3Sync:
     - bucketName: ${param:siteName}
       localDir: static
-  scriptable:
-    hooks:
-      # replace variables in static content
-      before:package:createDeploymentArtifacts: ./prepare.sh
 
 params:
   default:
@@ -29,7 +25,6 @@ params:
 
 plugins:
   - serverless-s3-sync
-  - serverless-scriptable-plugin
 
 outputs:
   # used by pipeline to set environment url in GH 
