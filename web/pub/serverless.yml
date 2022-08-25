@@ -19,7 +19,6 @@ custom:
       # replace variables in static content
       before:package:createDeploymentArtifacts: ./prepare.sh
 
-
 params:
   default:
     siteName: ${sls:stage}.pub1.stutz.click

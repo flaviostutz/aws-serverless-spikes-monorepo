@@ -1,4 +1,4 @@
-service: web-app
+service: web-todo
 
 frameworkVersion: '3'
 

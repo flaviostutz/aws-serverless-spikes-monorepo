@@ -1,4 +1,4 @@
-service: random-generator
+service: service-random-generator
 frameworkVersion: '3'
 
 provider:
