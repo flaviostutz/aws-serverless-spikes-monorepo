@@ -7,7 +7,7 @@ const baseURL = process.env.BASE_URL;
 
 const axiosOpts = {
   headers: {
-    'x-api-key': 'iPAZkNgNLm8D0oUp8kyV0aCTpWPoGTCGgWvTiJNg',
+    'x-api-key': 'QVWv27iOIP6ik9NjkB2ShaShABeKYHgo4Dw9KzLR',
   },
 };
 
