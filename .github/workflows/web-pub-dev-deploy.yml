@@ -13,7 +13,7 @@ jobs:
     with:
       stage: dev
       workdir: ./web/pub/
-      AWS_DEFAULT_REGION: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_DEFAULT_REGION: us-east-1
       environment: dev
       before-package-script: |
         export CONFIG_RANDOM_API_BASE_URL="https://si1up12817.execute-api.us-east-1.amazonaws.com/dev"
