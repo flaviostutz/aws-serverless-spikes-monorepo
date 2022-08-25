@@ -1,9 +1,5 @@
 name: web-pub-dev-deploy
 
-env:
-  CONFIG_RANDOM_API_BASE_URL: 'https://si1up12817.execute-api.us-east-1.amazonaws.com/dev'
-  CONFIG_RANDOM_API_KEY: 'iPAZkNgNLm8D0oUp8kyV0aCTpWPoGTCGgWvTiJNg'
-
 on:
   push:
     branches: [ "main" ]
@@ -20,10 +16,9 @@ jobs:
       AWS_DEFAULT_REGION: us-east-1
       environment: dev
       before-package-script: |
-        echo "::add-mask::${{ env.CONFIG_RANDOM_API_BASE_URL }}"
-        echo "::add-mask::${{ env.CONFIG_RANDOM_API_KEY }}"
-        export CONFIG_RANDOM_API_BASE_URL=${{ env.CONFIG_RANDOM_API_BASE_URL }}
-        export CONFIG_RANDOM_API_KEY=${{ env.CONFIG_RANDOM_API_KEY }}
+        echo "::add-mask::QVWv27iOIP6ik9NjkB2ShaShABeKYHgo4Dw9KzLR"
+        export CONFIG_RANDOM_API_BASE_URL="https://si1up12817.execute-api.us-east-1.amazonaws.com/dev"
+        export CONFIG_RANDOM_API_KEY="QVWv27iOIP6ik9NjkB2ShaShABeKYHgo4Dw9KzLR"
     secrets:
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
