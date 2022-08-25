@@ -20,10 +20,10 @@ jobs:
       AWS_DEFAULT_REGION: us-east-1
       environment: dev
       before-package-script: |
-        echo "::add-mask::$CONFIG_RANDOM_API_BASE_URL"
-        echo "::add-mask::$CONFIG_RANDOM_API_KEY"
-        export CONFIG_RANDOM_API_BASE_URL=$CONFIG_RANDOM_API_BASE_URL
-        export CONFIG_RANDOM_API_KEY=$CONFIG_RANDOM_API_KEY
+        echo "::add-mask::${CONFIG_RANDOM_API_BASE_URL}"
+        echo "::add-mask::${CONFIG_RANDOM_API_KEY}"
+        export CONFIG_RANDOM_API_BASE_URL=${CONFIG_RANDOM_API_BASE_URL}
+        export CONFIG_RANDOM_API_KEY=${CONFIG_RANDOM_API_KEY}
     secrets:
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
