@@ -16,3 +16,4 @@ async function lambdaHandler(event: APIGatewayProxyEvent): Promise<APIGatewayPro
 export const handler = middy(lambdaHandler)
   .use(jsonBodyParser())
   .use(httpHeaderNormalizer());
+

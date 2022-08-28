@@ -1,13 +1,26 @@
 <html>
-    <head><script src="/_config.js"></script></head>
+    <head><script src="_config.js"></script></head>
     <body>
         <h3>Welcome to the public website!</h3>
         <h5>We will be open soon!</h5>
         <div id="info">
         </div>
     </body>
-    <script>
-        document.getElementById("info").innerText=`CONFIG_RANDOM_API_BASE_URL=${window.CONFIG_RANDOM_API_BASE_URL}`;
+    <script defer>
+        const showRandom = async () => {
+            if(window.CONFIG_RANDOM_API_BASE_URL && window.CONFIG_RANDOM_API_BASE_URL) {
+                const resp = await fetch(
+                `${window.CONFIG_RANDOM_API_BASE_URL}/random/number`,
+                {headers: {
+                    'x-api-key': window.CONFIG_RANDOM_API_BASE_URL
+                }});
+                const data = await resp.json();
+                document.getElementById("info").innerText=`Got random number from API: ${data.number} (${data.timestamp})`;
+            } else {
+                console.log('Cannot initialize page. Config not loaded.');
+            }
+        }
+        showRandom();
     </script>
 </html>
 
