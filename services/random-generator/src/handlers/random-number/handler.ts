@@ -9,7 +9,10 @@ async function lambdaHandler(event: APIGatewayProxyEvent): Promise<APIGatewayPro
   const number = Math.round(Math.random() * 99999);
   return {
     statusCode: 200,
-    body: `${number}`,
+    body: JSON.stringify({
+      number: `${number}`,
+      timestamp: new Date().toISOString(),
+    }),
   };
 }
 

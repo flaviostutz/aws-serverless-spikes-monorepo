@@ -12,6 +12,7 @@
         "sls:deploy": "sls deploy --verbose",
         "sls:package": "sls package --verbose",
         "sls:remove": "sls remove --verbose",
+        "sls:info": "sls info --verbose",
         "sls:openapi": "sls openapi generate"
     },
     "devDependencies": {
