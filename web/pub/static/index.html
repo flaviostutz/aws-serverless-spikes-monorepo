@@ -3,8 +3,8 @@
     <body>
         <h3>Welcome to the public website!</h3>
         <h5>We will be open soon!</h5>
-        <div id="info">
-        </div>
+        <p id="info1"></p>
+        <p id="info2"></p>
     </body>
     <script defer>
         const showRandom = async () => {
@@ -16,12 +16,21 @@
                         'x-api-key': window.CONFIG_RANDOM_API_KEY
                     }});
                     const data = await resp.json();
-                    document.getElementById("info").innerText=`Got random number from API: ${data.number} (${data.timestamp})`;
+                    document.getElementById("info1").innerText=`Got random number from API: ${data.number} (${data.timestamp})`;
+
+                    const resp2 = await fetch(
+                    `${window.CONFIG_RANDOM_API_BASE_URL}/random/user`,
+                    {headers: {
+                        'x-api-key': window.CONFIG_RANDOM_API_KEY
+                    }});
+                    const data2 = await resp2.json();
+                    document.getElementById("info2").innerText=`Got random user from API: ${data2}`;
+
                 } catch (err) {
-                    document.getElementById("info").innerText=`Couldn't call random number API. err=${err}`;
+                    document.getElementById("info1").innerText=`Couldn't call random number API. err=${err}`;
                 }
             } else {
-                document.getElementById("info").innerText=`Cannot initialize page. Config not loaded.`;
+                document.getElementById("info1").innerText=`Cannot initialize page. Config not loaded.`;
             }
         }
         showRandom();
