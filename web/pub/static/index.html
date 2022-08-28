@@ -8,11 +8,11 @@
     </body>
     <script defer>
         const showRandom = async () => {
-            if(window.CONFIG_RANDOM_API_BASE_URL && window.CONFIG_RANDOM_API_BASE_URL) {
+            if(window.CONFIG_RANDOM_API_BASE_URL && window.CONFIG_RANDOM_API_KEY) {
                 const resp = await fetch(
                 `${window.CONFIG_RANDOM_API_BASE_URL}/random/number`,
                 {headers: {
-                    'x-api-key': window.CONFIG_RANDOM_API_BASE_URL
+                    'x-api-key': window.CONFIG_RANDOM_API_KEY
                 }});
                 const data = await resp.json();
                 document.getElementById("info").innerText=`Got random number from API: ${data.number} (${data.timestamp})`;
