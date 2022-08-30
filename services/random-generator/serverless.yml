@@ -20,6 +20,7 @@ provider:
     - arn:aws:lambda:us-east-1:901920570463:layer:aws-otel-nodejs-amd64-ver-1-2-0:1
   environment:
     AWS_LAMBDA_EXEC_WRAPPER: /opt/otel-handler
+    NODE_OPTIONS: "--require /var/task/instrumentation.js" #https://github.com/open-telemetry/opentelemetry-js-api/issues/157#issuecomment-1101352108b
   # https://towardsdatascience.com/build-a-serverless-api-with-amazon-lambda-and-api-gateway-dfd688510436
   # https://medium.com/@dorian599/serverless-api-keys-c0ee41528cc9
   apiGateway:
