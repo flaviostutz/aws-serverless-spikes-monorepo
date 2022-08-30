@@ -30,7 +30,7 @@
                         'x-api-key': window.CONFIG_RANDOM_API_KEY
                     }});
                     const data = await resp.json();
-                    document.getElementById("info2").innerText=`Got random user from API: ${data.results[0]}`;
+                    document.getElementById("info2").innerText=`Got random user from API: ${data.results[0].name.first} ${data.results[0].phone} (${data.results[0].email})`;
 
                 } catch (err) {
                     document.getElementById("info2").innerText=`Couldn't call random user API. err=${err}`;
