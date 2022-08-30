@@ -122,11 +122,16 @@ functions:
               - statusCode: 200
                 responseModels:
                   application/json: randomUserResponse
-        # VALIDATE SPEC AGAINST INTEGRATION TESTS https://github.com/openapi-library/OpenAPIValidators/tree/master/packages/jest-openapi#readme
+              # VALIDATE SPEC AGAINST INTEGRATION TESTS https://github.com/openapi-library/OpenAPIValidators/tree/master/packages/jest-openapi#readme
+    deploymentSettings:
+      type: AllAtOnce #Linear10PercentEvery3Minutes, Canary10Percent30Minutes
+      alias: live
+      stages: [ dev, prd ] # rollout only apply to these stages
 
 plugins:
   - serverless-esbuild
   - serverless-prune-plugin # for removing old lambda versions
+  - serverless-plugin-canary-deployments # makes deployments more controllable, event when using simple "AllAtOnce"
   - serverless-offline
   - serverless-reqvalidator-plugin # for validating request schema
   - serverless-v2-aws-documentation # for documenting aws api gateway
@@ -151,5 +156,5 @@ custom:
 
   prune:
     automatic: true
-    number: 3
+    number: 5
 
