@@ -6,11 +6,11 @@ import httpHeaderNormalizer from '@middy/http-header-normalizer';
 
 async function lambdaHandler(event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> {
   console.log(event.body);
-  // const number = Math.round(Math.random() * 99999);
+  const number = Math.round(Math.random() * 99999);
   return {
     statusCode: 200,
     body: JSON.stringify({
-      number: `8888888`,
+      number: `${number}`,
       timestamp: new Date().toISOString(),
     }),
   };
