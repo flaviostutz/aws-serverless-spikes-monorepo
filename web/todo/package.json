@@ -24,6 +24,7 @@
     "sls:package": "react-scripts build && sls package",
     "sls:deploy": "sls deploy",
     "sls:remove": "sls remove",
+    "sls:print": "sls print",
     "info": "sls print --path custom"
   },
   "eslintConfig": {
