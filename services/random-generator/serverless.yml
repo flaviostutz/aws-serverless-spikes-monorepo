@@ -124,7 +124,7 @@ functions:
                   application/json: randomUserResponse
               # VALIDATE SPEC AGAINST INTEGRATION TESTS https://github.com/openapi-library/OpenAPIValidators/tree/master/packages/jest-openapi#readme
     deploymentSettings:
-      type: AllAtOnce #Linear10PercentEvery3Minutes, Canary10Percent30Minutes
+      type: Linear10PercentEvery3Minutes #AllAtOnce, Canary10Percent30Minutes
       alias: live
       stages: [ dev, prd ] # rollout only apply to these stages
 
