@@ -24,13 +24,13 @@
 
                 try {
                     // call random user
-                    const resp2 = await fetch(
+                    const resp = await fetch(
                     `${window.CONFIG_RANDOM_API_BASE_URL}/random/user`,
                     {headers: {
                         'x-api-key': window.CONFIG_RANDOM_API_KEY
                     }});
-                    const data2 = await resp2.json();
-                    document.getElementById("info2").innerText=`Got random user from API: ${data2[0]}`;
+                    const data = await resp.json();
+                    document.getElementById("info2").innerText=`Got random user from API: ${data[0]}`;
 
                 } catch (err) {
                     document.getElementById("info2").innerText=`Couldn't call random user API. err=${err}`;

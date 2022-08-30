@@ -8,7 +8,11 @@ import axios from 'axios';
 async function lambdaHandler(event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> {
   console.log(event.body);
 
-  const { results } = <any>event.queryStringParameters;
+  let results = 5;
+  if (event.queryStringParameters) {
+    const { presults } = <any>event.queryStringParameters;
+    results = presults;
+  }
   const resp = await axios.get(`https://randomuser.me/api/?results=${results}`);
 
   return {
