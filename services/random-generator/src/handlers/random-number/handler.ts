@@ -10,7 +10,7 @@ async function lambdaHandler(event: APIGatewayProxyEvent): Promise<APIGatewayPro
   return {
     statusCode: 200,
     body: JSON.stringify({
-      number: `999999`,
+      number: `8888888`,
       timestamp: new Date().toISOString(),
     }),
   };
