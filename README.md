@@ -14,7 +14,17 @@ Serverless Framework application using a monorepo with Web, API and NodeJS backe
       * "todo-svc-dev" "todo-svc-prd"
     * Secrets Manager prefix
       * "todo-svc/dev/GOOGLE_MAPS_KEY"
-    * 
+    * GH workflows names
+      * "todo-svc-dev-deploy.yml"
+
+## Environment variables
+
+* Use .env files for defining environment variables
+* Serverless tries to get .env.[stage] name, and if it doesn't exist, fall back to .env
+* Inside serverless.yml use "useDotEnv: true"
+* Example:
+  * .env - used by all PRs and dev environments
+  * .env.prd - used by production environments
 
 ## Creating a new service or web site
 
