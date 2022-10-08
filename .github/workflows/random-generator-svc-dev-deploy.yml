@@ -28,4 +28,4 @@ jobs:
   deploy-keys:
     runs-on: ubuntu-20.04
     steps:
-      - uses: flaviostutz/aws-secrets-manager-action
+      - uses: flaviostutz/aws-secrets-manager-action@main
