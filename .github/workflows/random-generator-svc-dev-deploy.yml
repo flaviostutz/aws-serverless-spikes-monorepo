@@ -45,7 +45,7 @@ jobs:
     steps:
       - uses: flaviostutz/aws-secrets-manager-action@main
         with:
-          name: my-secret2
+          name: test-secret2
           operation: delete
           AWS_DEFAULT_REGION: us-east-1
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
