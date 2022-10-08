@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-require-imports */
 /* eslint-disable import/no-commonjs */
-const eslintConfig = require('../../shared/utils/lint/eslint-config');
+const eslintConfig = require('../../shared/js/lint/eslint-config');
 
 module.exports = { ...eslintConfig, ...{
   parserOptions: {

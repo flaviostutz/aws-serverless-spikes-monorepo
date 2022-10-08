@@ -19,13 +19,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "lint": "echo \"no linting. ignoring\" && exit 0",
-    "sls:package": "react-scripts build && sls package",
-    "sls:deploy": "sls deploy",
-    "sls:remove": "sls remove",
-    "sls:print": "sls print",
-    "info": "sls print --path custom"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
