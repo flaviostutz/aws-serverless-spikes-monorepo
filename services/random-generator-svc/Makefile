@@ -29,4 +29,3 @@ all: build lint unit-tests deploy
 
 clean: undeploy
 	rm -rf node_modules
-
