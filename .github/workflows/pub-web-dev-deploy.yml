@@ -4,7 +4,7 @@ on:
   push:
     branches: [ "main" ]
     paths:
-      - web/pub/**
+      - web/pub-web/**
 
 jobs:
   deploy:
@@ -13,7 +13,7 @@ jobs:
     with:
       stage: dev
       environment: dev
-      working-directory: ./web/pub/
+      working-directory: ./web/pub-web/
       tooling: node
       tooling-version: 16
       target-build: true

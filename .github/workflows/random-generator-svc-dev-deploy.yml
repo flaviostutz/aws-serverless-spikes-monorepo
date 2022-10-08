@@ -4,7 +4,7 @@ on:
   push:
     branches: [ "main" ]
     paths:
-      - services/random-generator/**
+      - services/random-generator-svc/**
 
 jobs:
   deploy-service:
@@ -13,7 +13,7 @@ jobs:
     with:
       stage: dev
       environment: dev
-      working-directory: ./services/random-generator/
+      working-directory: ./services/random-generator-svc/
       tooling: node
       tooling-version: 16
       target-build: true

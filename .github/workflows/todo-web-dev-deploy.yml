@@ -4,7 +4,7 @@ on:
   push:
     branches: [ "main" ]
     paths:
-      - web/todo/**
+      - web/todo-web/**
 
 jobs:
   deploy:
@@ -13,7 +13,7 @@ jobs:
     with:
       stage: dev
       environment: dev
-      working-directory: ./web/todo/
+      working-directory: ./web/todo-web/
       tooling: node
       tooling-version: 16
       target-build: true
