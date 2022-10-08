@@ -27,5 +27,6 @@ jobs:
 
   deploy-keys:
     runs-on: ubuntu-20.04
+    # needs: deploy-service
     steps:
       - uses: flaviostutz/aws-secrets-manager-action@main
