@@ -126,7 +126,7 @@ resources:
         DomainValidationOptions:
           - DomainName: ${param:domainName}
             HostedZoneId: ${self:custom.hostedZoneName}
-        ServiceToken: !Ref CustomAcmCertificateLambda.Arn
+        ServiceToken: !GetAtt CustomAcmCertificateLambda.Arn
 
     CustomAcmCertificateLambda:
       Type: AWS::Lambda::Function
@@ -136,7 +136,7 @@ resources:
       Properties:
         Description: Cloudformation custom resource for DNS validated certificates
         Handler: index.handler
-        Role: !Ref CustomAcmCertificateLambdaExecutionRole.Arn
+        Role: !GetAtt CustomAcmCertificateLambdaExecutionRole.Arn
         Runtime: python3.6
         Timeout: 900
         Code:
