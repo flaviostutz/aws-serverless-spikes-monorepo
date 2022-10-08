@@ -1,14 +1,16 @@
 SHELL := /bin/bash
 
+.PHONY: build
 build:
 	npm ci
+	npx react-scripts build
 
 lint:
 	echo "No lint configured"
 
 unit-tests:
-	npx react-scripts test
-
+	CI=true npx react-scripts test --all --coverage
+	
 package: stagereq prepare
 	npx sls package --stage ${STAGE}
 

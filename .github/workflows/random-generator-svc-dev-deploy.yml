@@ -25,28 +25,28 @@ jobs:
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
-  deploy-keys:
-    runs-on: ubuntu-20.04
-    environment: dev
-    # needs: deploy-service
-    steps:
-      - uses: flaviostutz/aws-secrets-manager-action@main
-        with:
-          name: test-secret2
-          value: test-value
-          AWS_DEFAULT_REGION: us-east-1
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  # deploy-keys:
+  #   runs-on: ubuntu-20.04
+  #   environment: dev
+  #   # needs: deploy-service
+  #   steps:
+  #     - uses: flaviostutz/aws-secrets-manager-action@main
+  #       with:
+  #         name: test-secret2
+  #         value: test-value
+  #         AWS_DEFAULT_REGION: us-east-1
+  #         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  #         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
-  delete-keys:
-    runs-on: ubuntu-20.04
-    environment: dev
-    needs: deploy-keys
-    steps:
-      - uses: flaviostutz/aws-secrets-manager-action@main
-        with:
-          name: test-secret2
-          operation: delete
-          AWS_DEFAULT_REGION: us-east-1
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  # delete-keys:
+  #   runs-on: ubuntu-20.04
+  #   environment: dev
+  #   needs: deploy-keys
+  #   steps:
+  #     - uses: flaviostutz/aws-secrets-manager-action@main
+  #       with:
+  #         name: test-secret2
+  #         operation: delete
+  #         AWS_DEFAULT_REGION: us-east-1
+  #         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  #         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
