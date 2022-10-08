@@ -7,7 +7,7 @@ lint:
 	echo "No lint configured"
 
 unit-tests:
-	npx react-scripts test
+	echo "No tests configured"
 
 package: stagereq prepare
 	npx sls package --stage ${STAGE}
