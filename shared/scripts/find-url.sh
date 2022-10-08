@@ -4,6 +4,7 @@ INPUT=$1
 
 if [ "$INPUT" == "" ]; then
     echo "Usage $0 [input] [text before url]"
+    exit 1
 fi
 
 PREFIX=$2
