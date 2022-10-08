@@ -1,21 +1,21 @@
 SHELL := /bin/bash
 
-build: prereqs
+build:
 	npm ci
 
-lint: prereqs
+lint:
 	echo "No lint configured"
 
-unit-tests: prereqs
+unit-tests:
 	npx react-scripts test
 
-package: prereqs prepare
+package: stagereq prepare
 	npx sls package --stage ${STAGE}
 
-deploy: prereqs prepare
+deploy: stagereq prepare
 	npx sls deploy --stage ${STAGE}
 
-get-environment-url: prereqs
+get-environment-url: stagereq
 	PRINT_OUT=$$(npx sls print --stage $${STAGE}); \
 		../../shared/scripts/find-url.sh "$${PRINT_OUT}" "environment-url: "
 
@@ -27,10 +27,10 @@ prepare:
 		CONFIG_RANDOM_API_KEY="QVWv27iOIP6ik9NjkB2ShaShABeKYHgo4Dw9KzLR" \
 		./prepare.sh
 
-undeploy: prereqs
+undeploy: stagereq
 	npx sls remove --stage ${STAGE}
 
-prereqs:
+stagereq:
 	../../shared/scripts/stage-require.sh
 
 all: build lint unit-tests deploy get-environment-url

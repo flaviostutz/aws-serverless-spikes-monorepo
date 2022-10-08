@@ -1,28 +1,28 @@
 SHELL := /bin/bash
 
-build: prereqs
+build:
 	npm ci
 
-lint: prereqs
+lint:
 	npx eslint . --ext .ts
 	npx tsc -noEmit --skipLibCheck
 
-unit-tests: prereqs
+unit-tests:
 	npx jest
 
-package: prereqs
+package: stagereq
 	npx sls package --stage ${STAGE}
 
-deploy: prereqs
+deploy: stagereq
 	npx sls deploy --stage ${STAGE}
 
 integration-tests:
 	curl ${ENVIRONMENT_URL}
 
-undeploy: prereqs
+undeploy: stagereq
 	npx sls remove --stage ${STAGE}
 
-prereqs:
+stagereq:
 	../../shared/scripts/stage-require.sh
 
 all: build lint unit-tests deploy

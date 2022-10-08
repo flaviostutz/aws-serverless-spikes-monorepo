@@ -3,19 +3,19 @@ SHELL := /bin/bash
 build: prereqs
 	npm ci
 
-lint: prereqs
+lint:
 	echo "No lint configured"
 
-unit-tests: prereqs
+unit-tests:
 	npx react-scripts test
 
-package: prereqs prepare
+package: stagereq prepare
 	npx sls package --stage ${STAGE}
 
-deploy: prereqs prepare
+deploy: stagereq prepare
 	npx sls deploy --stage ${STAGE}
 
-get-environment-url: prereqs
+get-environment-url: stagereq
 	PRINT_OUT=$$(npx sls print --stage $${STAGE}); \
 		../../shared/scripts/find-url.sh "$${PRINT_OUT}" "environment-url: "
 
@@ -30,7 +30,7 @@ prepare:
 undeploy: prereqs
 	npx sls remove --stage ${STAGE}
 
-prereqs:
+stagereq:
 	../../shared/scripts/stage-require.sh
 
 all: build lint unit-tests deploy get-environment-url
