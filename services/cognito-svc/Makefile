@@ -6,6 +6,7 @@ build:
 lint:
 	npx eslint . --ext .ts
 	npx tsc -noEmit --skipLibCheck
+	npm audit
 
 unit-tests:
 	npx jest
