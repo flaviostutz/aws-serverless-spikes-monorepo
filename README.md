@@ -2,6 +2,20 @@
 
 Serverless Framework application using a monorepo with Web, API and NodeJS backend with DB and PR deployments orchestrated by Github Actions
 
+## Module naming
+
+* Use consistent naming for a certain module
+  * Example:
+    * service/todo-svc
+    * web/todo-web
+    * "todo-svc" and "todo-web" are the module names and must be unique in the repo
+  * Take care to use exactly the same module name for all related resources around a specific module, for example:
+    * GH environments names
+      * "todo-svc-dev" "todo-svc-prd"
+    * Secrets Manager prefix
+      * "todo-svc/dev/GOOGLE_MAPS_KEY"
+    * 
+
 ## Creating a new service or web site
 
 * Duplicate and rename the folder of an existing service
@@ -9,6 +23,10 @@ Serverless Framework application using a monorepo with Web, API and NodeJS backe
 * Duplicate and rename the workflow file on .github/workflows from an existing service
 
 ## Tooling
+
+* Use Makefiles for all scripting tasks, including CI/CD and scripts for running things locally
+  * Each module have its own Makefile
+  * There is a Makefile in the root for monorepo-wide operations
 
 * The selected tools is the state of the art, minimal and productive set we could find at Aug-2022
 

@@ -1,19 +1,19 @@
-name: web-todo-dev-deploy
+name: random-generator-svc-dev-deploy
 
 on:
   push:
     branches: [ "main" ]
     paths:
-      - web/todo/**
+      - services/random-generator/**
 
 jobs:
-  deploy:
-    name: Web todo dev deploy
+  deploy-service:
+    name: Random Generator Service dev deploy
     uses: flaviostutz/gh-makefile/.github/workflows/make-ci.yml@main
     with:
       stage: dev
       environment: dev
-      working-directory: ./web/todo/
+      working-directory: ./services/random-generator/
       tooling: node
       tooling-version: 16
       target-build: true
@@ -25,3 +25,7 @@ jobs:
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
+  deploy-keys:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: flaviostutz/aws-secrets-manager-action

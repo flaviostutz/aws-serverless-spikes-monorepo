@@ -1,19 +1,19 @@
-name: web-pub-dev-deploy
+name: todo-web-dev-deploy
 
 on:
   push:
     branches: [ "main" ]
     paths:
-      - web/pub/**
+      - web/todo/**
 
 jobs:
   deploy:
-    name: Web pub dev deploy
+    name: Todo Web dev deploy
     uses: flaviostutz/gh-makefile/.github/workflows/make-ci.yml@main
     with:
       stage: dev
       environment: dev
-      working-directory: ./web/pub/
+      working-directory: ./web/todo/
       tooling: node
       tooling-version: 16
       target-build: true

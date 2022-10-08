@@ -1,19 +1,19 @@
-name: services-random-generator-dev-deploy
+name: pub-web-dev-deploy
 
 on:
   push:
     branches: [ "main" ]
     paths:
-      - services/random-generator/**
+      - web/pub/**
 
 jobs:
   deploy:
-    name: Service random-generator dev deploy
+    name: Pub Web dev deploy
     uses: flaviostutz/gh-makefile/.github/workflows/make-ci.yml@main
     with:
       stage: dev
       environment: dev
-      working-directory: ./services/random-generator/
+      working-directory: ./web/pub/
       tooling: node
       tooling-version: 16
       target-build: true

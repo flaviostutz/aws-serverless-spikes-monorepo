@@ -35,7 +35,7 @@ provider:
           throttle:
             burstLimit: 1
             rateLimit: 5
-
+            
 resources:
   Resources:
     RequestValidator:

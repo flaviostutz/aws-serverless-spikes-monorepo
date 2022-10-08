@@ -1,4 +1,4 @@
-name: services-todo-dev-deploy
+name: todo-svc-dev-deploy
 
 on:
   push:
@@ -8,7 +8,7 @@ on:
 
 jobs:
   deploy:
-    name: Service todo dev deploy
+    name: Todo Service dev deploy
     uses: flaviostutz/gh-makefile/.github/workflows/make-ci.yml@main
     with:
       stage: dev
