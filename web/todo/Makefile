@@ -23,9 +23,9 @@ integration-tests:
 	curl ${ENVIRONMENT_URL}
 
 prepare:
-	CONFIG_RANDOM_API_BASE_URL="https://l0tmt6tk1k.execute-api.us-east-1.amazonaws.com/dev" \
-		CONFIG_RANDOM_API_KEY="QVWv27iOIP6ik9NjkB2ShaShABeKYHgo4Dw9KzLR" \
-		./prepare.sh
+	# CONFIG_RANDOM_API_BASE_URL="https://l0tmt6tk1k.execute-api.us-east-1.amazonaws.com/dev" \
+	# 	CONFIG_RANDOM_API_KEY="QVWv27iOIP6ik9NjkB2ShaShABeKYHgo4Dw9KzLR" \
+	# 	./prepare.sh
 
 undeploy: stagereq
 	npx sls remove --stage ${STAGE}

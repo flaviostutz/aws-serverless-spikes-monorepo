@@ -1,6 +1,6 @@
 SHELL := /bin/bash
 
-build: prereqs
+build:
 	npm ci
 
 lint:
@@ -37,4 +37,5 @@ all: build lint unit-tests deploy get-environment-url
 
 clean: undeploy
 	rm -rf node_modules
+
 
