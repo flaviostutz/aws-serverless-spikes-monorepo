@@ -7,7 +7,7 @@ build:
 
 lint:
 	npx eslint
-	npm audit --audit-level high
+	# npm audit --audit-level high
 
 unit-tests:
 	CI=true npx react-scripts test --all --coverage
