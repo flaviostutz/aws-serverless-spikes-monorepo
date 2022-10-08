@@ -4,9 +4,6 @@
   "description": "",
   "main": "handler.js",
   "scripts": {
-    "prepare-local": "CONFIG_RANDOM_API_BASE_URL=https://l0tmt6tk1k.execute-api.us-east-1.amazonaws.com/dev CONFIG_RANDOM_API_KEY=QVWv27iOIP6ik9NjkB2ShaShABeKYHgo4Dw9KzLR ./prepare.sh",
-    "lint": "echo \"no linting. ignoring\" && exit 0",
-    "test": "echo \"no tests. ignoring\" && exit 0"
   },
   "author": "",
   "license": "MIT",
