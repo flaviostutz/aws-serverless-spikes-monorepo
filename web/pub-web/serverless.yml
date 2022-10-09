@@ -137,7 +137,7 @@ resources:
         Description: Cloudformation custom resource for DNS validated certificates
         Handler: index.handler
         Role: !GetAtt CustomAcmCertificateLambdaExecutionRole.Arn
-        Runtime: python3.6
+        Runtime: python3.9
         Timeout: 900
         Code:
           ZipFile: "T=RuntimeError\nimport copy,hashlib as t,json,logging as B,time\
