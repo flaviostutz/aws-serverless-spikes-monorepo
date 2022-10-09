@@ -198,7 +198,6 @@ resources:
           - arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
           - arn:aws:iam::aws:policy/service-role/AWSLambdaRole
         Policies:
-        parei aqui erro policy
         - PolicyDocument:
             Statement:
               - Action:
