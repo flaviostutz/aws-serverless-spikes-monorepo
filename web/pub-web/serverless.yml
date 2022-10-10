@@ -124,7 +124,7 @@ resources:
         Region: us-east-1
         DomainValidationOptions:
           - DomainName: ${param:domainName}
-            HostedZoneId: ${self:custom.hostedZoneName}
+            HostedZoneId: Z10285941A0EJEIKY3AGB
         ServiceToken: !GetAtt CustomAcmCertificateLambda.Arn
 
     CustomAcmCertificateLambda:
