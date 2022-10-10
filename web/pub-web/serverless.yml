@@ -159,7 +159,7 @@ resources:
       Handler: index.handler
       Role: !GetAtt 'CustomAcmCertificateLambdaExecutionRole.Arn'
       Runtime: python3.9
-      Timeout: 900
+      Timeout: 300
     
     CustomAcmCertificateLambdaExecutionRole:
       Type: AWS::IAM::Role
