@@ -9,6 +9,7 @@ provider:
 
 custom:
   hostedZoneName: stutz.click
+  hostedZoneId: Z10285941A0EJEIKY3AGB
   baseDomainName: pub1.stutz.click
   s3Sync:
     - bucketName: ${param:domainName}
@@ -62,7 +63,7 @@ resources:
       Properties:
         HostedZoneName: ${self:custom.hostedZoneName}.
         Name:
-          Ref: SiteBucket
+          Ref: ${param:domainName}
         Type: A
         AliasTarget:
           DNSName: !GetAtt CloudFrontDistribution.DomainName
@@ -124,7 +125,7 @@ resources:
         Region: us-east-1
         DomainValidationOptions:
           - DomainName: ${param:domainName}
-            HostedZoneId: Z10285941A0EJEIKY3AGB
+            HostedZoneId: ${self:custom.hostedZoneId}
         ServiceToken: !GetAtt CustomAcmCertificateLambda.Arn
 
     CustomAcmCertificateLambda:
