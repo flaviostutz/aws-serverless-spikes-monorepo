@@ -9,6 +9,7 @@ provider:
 
 custom:
   hostedZoneName: stutz.click
+  baseDomainName: pub1.stutz.click
   s3Sync:
     - bucketName: ${param:domainName}
       localDir: static
@@ -18,11 +19,11 @@ custom:
 
 params:
   default:
-    domainName: ${sls:stage}.pub1.stutz.click
+    domainName: ${sls:stage}.${self:custom.baseDomainName}
   dev:
-    domainName: dev.pub1.stutz.click
+    domainName: dev.${self:custom.baseDomainName}
   prd:
-    domainName: pub1.stutz.click
+    domainName: ${self:custom.baseDomainName}
 
 plugins:
   - serverless-s3-sync
@@ -84,7 +85,7 @@ resources:
           HttpVersion: http2
           DefaultRootObject: index.html
           ViewerCertificate:
-            AcmCertificateArn: !Ref TLSCertificate
+            AcmCertificateArn: !Ref HTTPSCertificate
             SslSupportMethod: sni-only
             MinimumProtocolVersion: TLSv1.2_2019
           Origins:
@@ -114,12 +115,10 @@ resources:
             OriginRequestPolicyId: 88a5eaf4-2fd4-4709-b370-b4c650ea3fcf
             ViewerProtocolPolicy: redirect-to-https
 
-    TLSCertificate:
+    HTTPSCertificate:
       Type: Custom::DNSCertificate
       Properties:
         DomainName: ${param:domainName}
-        SubjectAlternativeNames:
-          - www.${param:domainName}
         ValidationMethod: DNS
         # Needs to be in us-east-1 because of CloudFront limitations
         Region: us-east-1
