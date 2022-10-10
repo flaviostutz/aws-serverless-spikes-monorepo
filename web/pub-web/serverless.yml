@@ -62,8 +62,7 @@ resources:
       Type: AWS::Route53::RecordSet
       Properties:
         HostedZoneName: ${self:custom.hostedZoneName}.
-        Name:
-          Ref: ${param:domainName}
+        Name: ${param:domainName}
         Type: A
         AliasTarget:
           DNSName: !GetAtt CloudFrontDistribution.DomainName
