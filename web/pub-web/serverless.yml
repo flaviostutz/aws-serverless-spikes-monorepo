@@ -14,8 +14,8 @@ custom:
     - bucketName: ${param:domainName}
       localDir: static
   cloudfrontInvalidate:
-    distributionIdKey: CloudFrontId
-    items: ["/*"]
+    - distributionIdKey: CloudFrontId
+      items: ["/*"]
 
 params:
   default:
