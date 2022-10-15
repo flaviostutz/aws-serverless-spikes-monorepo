@@ -1,4 +1,4 @@
-name: pub-web-dev-deploy
+name: public-web-dev-deploy
 
 on:
   push:

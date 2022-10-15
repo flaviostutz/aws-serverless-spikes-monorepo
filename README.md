@@ -6,8 +6,8 @@ Serverless Framework application using a monorepo with Web, API and NodeJS backe
 
 * Use consistent naming for a certain module
   * Example:
-    * service/todo-svc
-    * web/todo-web
+    * modules/todo-svc
+    * modules/todo-web
     * "todo-svc" and "todo-web" are the module names and must be unique in the repo
   * Take care to use exactly the same module name for all related resources around a specific module, for example:
     * GH environments names
@@ -16,6 +16,36 @@ Serverless Framework application using a monorepo with Web, API and NodeJS backe
       * "todo-svc/dev/GOOGLE_MAPS_KEY"
     * GH workflows names
       * "todo-svc-dev-deploy.yml"
+
+## Monorepo linting
+
+* /.github/workflows contains GH workflows
+  * Filename must be the same as 'name' attribute inside the yml file
+    * file todo-web-dev-deploy.yml must have 'name: todo-web-dev-deploy'
+  * Workflow filename must start with the name of an existing module
+
+* /modules folder contains modules
+  * Ex.:
+    * modules/todo/todo-svc
+    * modules/todo/todo-web
+    * modules/random-generator-svc
+
+* /shared folder contains resources used by other modules
+  * folders must be [js|scripts|assets]
+
+* A module is identified by having a ".serverless" file at its root
+
+* The module name must end with [-svc|-web]
+
+* Module folder structure
+  * /src - javascript files
+  * /src/[handlers|utils]
+  * /sls - serverless files referenced by .serverless.yml
+  * /.serverless.yml - serverless config entrypoint
+  * /Makefile - pipeline and scripts run
+
+* .serverless.yml 'service' attribute must match module folder name
+* package.json 'name' attribute must match module folder name
 
 ## Environment variables
 

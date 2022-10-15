@@ -1,4 +1,4 @@
-service: web-pub
+service: public-pub
 
 frameworkVersion: '3'
 useDotenv: true
