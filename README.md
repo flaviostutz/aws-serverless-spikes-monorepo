@@ -33,19 +33,25 @@ Serverless Framework application using a monorepo with Web, API and NodeJS backe
 * /shared folder contains resources used by other modules
   * folders must be [js|scripts|assets]
 
-* A module is identified by having a ".serverless" file at its root
+* Modules
+  * A module is identified by having a ".serverless" file at its root
 
-* The module name must end with [-svc|-web]
+  * The module name must end with [-svc|-web]
 
-* Module folder structure
-  * /src - javascript files
-  * /src/[handlers|utils]
-  * /sls - serverless files referenced by .serverless.yml
-  * /.serverless.yml - serverless config entrypoint
-  * /Makefile - pipeline and scripts run
+  * All modules must have different names, regardless of the parent folder structure they are
 
-* .serverless.yml 'service' attribute must match module folder name
-* package.json 'name' attribute must match module folder name
+  * Module folder structure
+    * /src - javascript files
+    * /src/[handlers|utils]
+    * /sls - serverless files referenced by .serverless.yml
+    * /.serverless.yml - serverless config entrypoint
+    * /Makefile - pipeline and scripts run
+
+  * .serverless.yml
+    * 'service' attribute must match module folder name
+
+  * package.json
+    * 'name' attribute must match module folder name
 
 ## Environment variables
 
