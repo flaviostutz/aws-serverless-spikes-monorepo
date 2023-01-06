@@ -1,9 +1,16 @@
 {
-  "name": "simple-static",
+  "name": "public-web",
   "version": "1.0.0",
   "description": "",
   "main": "handler.js",
   "scripts": {
+    "build": "make build",
+    "build-module": "make build-module",
+    "unit-tests": "make unit-tests",
+    "lint": "make lint",
+    "lint-fix": "make lint-fix",
+    "test": "make unit-tests",
+    "clean": "make clean"
   },
   "author": "",
   "license": "MIT",

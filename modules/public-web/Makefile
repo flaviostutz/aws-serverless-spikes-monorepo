@@ -1,13 +1,29 @@
 SHELL := /bin/bash
 
-build:
-	npm ci
+# Build this module and all its dependencies
+build: install
+	npx nx run build-module --verbose --output-style=stream
+
+# Build only this module (without dependencies)
+build-module: package
+
+install:
+	yarn install --frozen-lockfile --ignore-optional
 
 lint:
-	echo "No lint configured"
+	npx prettier --loglevel warn --check .
+	npx eslint . --ext .ts
+	npx tsc -noEmit --skipLibCheck
+	yarn audit; [[ $? -ge 16 ]] && exit 1 || exit 0
+
+lint-fix:
+	npx prettier --loglevel warn --write .
+	npx eslint . --ext .ts --fix
+
+test: unit-tests
 
 unit-tests:
-	echo "No tests configured"
+	npx jest --verbose
 
 package: stagereq prepare
 	npx sls package --stage ${STAGE}

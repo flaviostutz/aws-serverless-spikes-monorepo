@@ -1,0 +1,12 @@
+{
+  "private": true,
+  "name": "aws-serverless-spikes-monorepo",
+  "workspaces": [
+    "modules/*",
+    "shared/*"
+  ],
+  "packageManager": "yarn@3.2.4",
+  "devDependencies": {
+    "nx": "15.4.4"
+  }
+}

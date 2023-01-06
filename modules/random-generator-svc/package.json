@@ -1,5 +1,5 @@
 {
-    "name": "random-generator",
+    "name": "random-generator-svc",
     "version": "1.0.0",
     "main": "index.js",
     "license": "MIT",
