@@ -1,11 +1,8 @@
-import { handler } from './handler';
+/* eslint-disable no-undefined */
+import https from 'https';
 
-// Trick to make OTEL layer work
-// https://github.com/evanw/esbuild/issues/2199
-// https://github.com/evanw/esbuild/issues/1079
-// eslint-disable-next-line import/no-commonjs
-module.exports = {
-  handler,
-};
+import AWSXRay from 'aws-xray-sdk';
 
-// export {handler} from './handler';
+AWSXRay.captureHTTPsGlobal(https, undefined);
+
+export { handler } from './handler';
