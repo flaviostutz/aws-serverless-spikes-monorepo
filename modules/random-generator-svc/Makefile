@@ -1,12 +1,12 @@
 SHELL := /bin/bash
 
 build:
-	npm ci
+	yarn install
 
 lint:
 	npx eslint . --ext .ts
 	npx tsc -noEmit --skipLibCheck
-	npm audit --audit-level high
+	yarn audit; [[ $? -ge 8 ]] && exit 1 || exit 0
 
 unit-tests:
 	npx jest

@@ -7,7 +7,7 @@ build:
 
 lint:
 	npx eslint
-	# npm audit --audit-level high
+	yarn audit; [[ $? -ge 8 ]] && exit 1 || exit 0
 
 unit-tests:
 	CI=true npx react-scripts test --all --coverage
