@@ -118,6 +118,26 @@ https://blog.mechanicalrock.io/2022/03/17/aws-wafv2-association-with-api-gateway
 * Each service/web site have its own workflow configured in ".github/workflow". Check the files for details
 * After a deployment is done, the base URL for the service is usually shown in the job details
 
+## For enabling NX in your monorepo
+
+* Add nx.json and yarnrc.yml to your monorepo root
+* Add package.json to the root of your project
+
+```json
+{
+  "private": true,
+  "name": "aws-serverless-spikes-monorepo",
+  "workspaces": [
+    "modules/*",
+    "shared/*"
+  ],
+  "packageManager": "yarn@3.2.4",
+  "devDependencies": {
+    "nx": "15.4.2"
+  }
+}
+```
+
 ## References
 
 * <https://khalilstemmler.com/blogs/typescript/node-starter-project/>

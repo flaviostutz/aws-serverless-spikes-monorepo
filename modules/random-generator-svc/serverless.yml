@@ -3,7 +3,7 @@ frameworkVersion: '3'
 
 provider:
   name: aws
-  runtime: nodejs14.x
+  runtime: nodejs16.x
   lambdaHashingVersion: 20201221
   timeout: 10
   memorySize: 128
@@ -16,12 +16,6 @@ provider:
   tracing:
     lambda: true
     apiGateway: true
-  layers:
-    - arn:aws:lambda:us-east-1:901920570463:layer:aws-otel-nodejs-amd64-ver-1-2-0:1
-  environment:
-    AWS_LAMBDA_EXEC_WRAPPER: /opt/otel-handler
-  # https://towardsdatascience.com/build-a-serverless-api-with-amazon-lambda-and-api-gateway-dfd688510436
-  # https://medium.com/@dorian599/serverless-api-keys-c0ee41528cc9
   apiGateway:
     apiKeys:
       - dev:
@@ -154,8 +148,7 @@ custom:
     bundle: true
     sourcemap: true
     watch:
-      pattern:
-        ['src/**/*.ts']
+      pattern: ['src/**/*.ts']
       ignore: ['.serverless/**/*', '.build', '.esbuild']
 
   prune:

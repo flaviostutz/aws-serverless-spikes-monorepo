@@ -1,5 +1,5 @@
 {
-    "name": "random-generator",
+    "name": "random-generator-svc",
     "version": "1.0.0",
     "main": "index.js",
     "license": "MIT",
@@ -21,6 +21,7 @@
     },
     "devDependencies": {
         "@shopify/eslint-plugin": "^42.0.1",
+        "@stutzlab/eslint-config": "^0.0.8",
         "@types/aws-lambda": "^8.10.102",
         "@types/jest": "28.1.7",
         "@types/node": "16.11.49",
@@ -47,6 +48,7 @@
         "@middy/http-header-normalizer": "^3.2.0",
         "@middy/http-json-body-parser": "^3.2.0",
         "aws-lambda": "^1.0.7",
+        "aws-xray-sdk": "^3.4.1",
         "axios": "^0.27.2",
         "http-errors": "^2.0.0"
     }

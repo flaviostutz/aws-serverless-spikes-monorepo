@@ -1,5 +1,5 @@
 {
-  "name": "simple-static",
+  "name": "public-web",
   "version": "1.0.0",
   "description": "",
   "main": "handler.js",
@@ -19,7 +19,7 @@
   "license": "MIT",
   "devDependencies": {
     "serverless": "^3.21.0",
-    "serverless-s3-sync": "^3.0.0",
-    "serverless-cloudfront-invalidate": "^1.12.2"
+    "serverless-cloudfront-invalidate": "^1.12.2",
+    "serverless-s3-sync": "^3.0.0"
   }
 }
