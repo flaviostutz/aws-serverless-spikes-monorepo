@@ -1,15 +1,19 @@
 {
-    "name": "random-generator",
+    "name": "cognito-svc",
     "version": "1.0.0",
     "main": "index.js",
     "license": "MIT",
     "scripts": {
-        "start": "sls offline",
-        "lint": "eslint . --ext .ts && tsc -noEmit --skipLibCheck",
-        "test": "jest",
-        "sls:deploy": "sls deploy --verbose",
-        "sls:package": "sls package --verbose",
-        "sls:remove": "sls remove --verbose"
+        "build": "make build",
+        "build-module": "make build-module",
+        "build-sls": "make build-sls",
+        "test": "make test",
+        "test-module": "make test-module",
+        "lint": "make lint",
+        "lint-module": "make lint-module",
+        "unit-tests": "make unit-tests",
+        "deploy": "make deploy",
+        "undeploy": "make undeploy"
     },
     "devDependencies": {
         "@shopify/eslint-plugin": "^42.0.1",

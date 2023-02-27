@@ -1,0 +1,12 @@
+{
+  "engines": {
+    "npm": "8.19.3"
+  },
+  "workspaces": [
+    "modules/*",
+    "shared/js/*"
+  ],
+  "dependencies": {
+    "turbo": "^1.8.3"
+  }
+}

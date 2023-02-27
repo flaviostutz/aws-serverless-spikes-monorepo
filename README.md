@@ -2,6 +2,21 @@
 
 Serverless Framework application using a monorepo with Web, API and NodeJS backend with DB and PR deployments orchestrated by Github Actions
 
+## Spikes you can find
+
+### module public-web
+
+- Static website deployed by Serverless Framework
+- Features CloudFront, S3 buckets, custom DNS domains per environment, automatic HTTP certificate provisioning and automatic CF invalidation during deployment, all provisioned via Serverless Framework/Cloudformation
+- In progress: AWS WAF and AWS Shield
+
+https://www.serverlessguru.com/blog/connecting-aws-waf-to-api-gateway-via-serverless-framework
+
+https://scalesec.com/blog/using-waf-and-cloudfront-with-serverless-applications/
+
+https://blog.mechanicalrock.io/2022/03/17/aws-wafv2-association-with-api-gateway.html
+
+
 ## Module naming
 
 * Use consistent naming for a certain module

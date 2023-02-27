@@ -1,0 +1,25 @@
+{
+    "$schema": "https://turbo.build/schema.json",
+    "pipeline": {
+      "build": {},
+      "build-module": {
+          "dependsOn": [ "^build-module" ],
+          "outputs": [ "dist/**" ]
+      },
+      "build-sls": {
+          "dependsOn": [ "^build-module" ],
+          "outputs": [ ".serverless/**" ]
+      },
+      "test": {},
+      "test-module": {
+        "dependsOn": [ "^test-module" ],
+        "outputs": [ "coverage" ]
+      },
+      "lint": {},
+      "lint-module": {
+        "dependsOn": [ "^lint-module" ]
+      },
+      "deploy": {},
+      "clean": {}
+    }
+}

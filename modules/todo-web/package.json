@@ -16,10 +16,17 @@
     "serverless-s3-sync": "^3.0.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "make start",
+    "build": "make build",
+    "build-module": "make build-module",
+    "build-sls": "make build-sls",
+    "test": "make test",
+    "test-module": "make test-module",
+    "lint": "make lint",
+    "lint-module": "make lint-module",
+    "unit-tests": "make unit-tests",
+    "deploy": "make deploy",
+    "undeploy": "make undeploy"
   },
   "eslintConfig": {
     "extends": [

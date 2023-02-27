@@ -1,34 +1,14 @@
 SHELL := /bin/bash
 
-build:
-	npm ci
+## Inherit targets from another Makefile
+%:
+	make -f ../../shared/makefiles/SLSMakefile $@
 
-lint:
-	npx eslint . --ext .ts
-	npx tsc -noEmit --skipLibCheck
-	npm audit --audit-level high
+## CI TARGETS
 
-unit-tests:
-	npx jest
+build-module:
+	echo "No lib build defined for this sls module"
 
-package: stagereq
-	npx sls package --stage ${STAGE}
-
-deploy: stagereq
-	npx sls deploy --stage ${STAGE}
-
-integration-tests:
-	curl ${ENVIRONMENT_URL}
-
-undeploy: stagereq
-	npx sls remove --stage ${STAGE}
-
-stagereq:
-	../../shared/scripts/stage-require.sh
-
-all: build lint unit-tests deploy
-
-clean: undeploy
-	rm -rf node_modules
-
+# DEVELOPER TARGETS
+# Developers can add custom targets below at will
 

@@ -4,15 +4,19 @@
     "main": "index.js",
     "license": "MIT",
     "scripts": {
-        "start": "sls offline",
-        "lint": "eslint . --ext .ts && tsc -noEmit --skipLibCheck",
-        "test": "jest",
+        "build": "make build",
+        "build-module": "make build-module",
+        "build-sls": "make build-sls",
+        "test": "make test",
+        "test-module": "make test-module",
+        "lint": "make lint",
+        "lint-module": "make lint-module",
+        "unit-tests": "make unit-tests",
+        "deploy": "make deploy",
+        "undeploy": "make undeploy",
+
         "test:integration": "jest --config jest.config.integration.js",
         "test:integration-local": "BASE_URL=https://si1up12817.execute-api.us-east-1.amazonaws.com/dev jest --config jest.config.integration.js",
-        "sls:deploy": "sls deploy --verbose",
-        "sls:package": "sls package --verbose",
-        "sls:remove": "sls remove --verbose",
-        "sls:info": "sls info --verbose",
         "sls:openapi": "sls openapi generate"
     },
     "devDependencies": {

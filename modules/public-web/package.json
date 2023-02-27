@@ -4,6 +4,16 @@
   "description": "",
   "main": "handler.js",
   "scripts": {
+    "build": "make build",
+    "build-module": "make build-module",
+    "build-sls": "make build-sls",
+    "test": "make test",
+    "test-module": "make test-module",
+    "lint": "make lint",
+    "lint-module": "make lint-module",
+    "unit-tests": "make unit-tests",
+    "deploy": "make deploy",
+    "undeploy": "make undeploy"
   },
   "author": "",
   "license": "MIT",

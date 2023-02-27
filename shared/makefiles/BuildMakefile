@@ -1,0 +1,63 @@
+SHELL := /bin/bash
+
+## This Makefile is used by all modules, so be careful when changing it and 
+## make sure to test all modules after changing it
+
+## CI TARGETS
+
+# Trigger Turbo to build this module and all its deps
+build: install
+	npm exec turbo run build-module --output-logs=new-only
+
+lint: install
+	npm exec turbo run lint-module --output-logs=new-only
+
+unit-tests: test
+
+
+
+# INTERNAL TARGETS
+
+# Build library (without deps)
+build-module: install
+	@date
+	rm -rf dist
+	npm exec esbuild src/index.ts --bundle --platform=node --outfile=dist/index.js
+	@date
+	npm exec tsc --emitDeclarationOnly --outDir dist
+	@date
+
+lint-module: install
+	npm exec eslint . --ext .ts
+	npm exec tsc -noEmit --skipLibCheck
+	npm audit --audit-level=high
+
+test: install
+	npm exec turbo run test-module --output-logs=new-only
+
+test-module: install
+	npm exec jest --ci $(ARGS)
+
+install:
+	npm install
+
+
+
+# DEVELOPER TARGETS
+# Developers can change below at will
+
+all: build-dev lint test
+
+build-dev:
+	# update yarn.lock if necessary
+	npm install
+	make build
+
+lint-fix:
+	npm exec eslint . --ext .ts --fix
+
+clean:
+	rm -rf node_modules .serverless dist
+
+upgrade-deps:
+	npx npm-check-updates -t minor -u

@@ -1,0 +1,69 @@
+SHELL := /bin/bash
+
+## This Makefile is used by all modules, so be careful when changing it and 
+## make sure to test all modules after changing it
+
+## Inherit targets from another Makefile
+%:
+	make -f ../../shared/makefiles/BuildMakefile $@
+
+## CI TARGETS
+
+# run build-module and build-sls (including dependencies)
+.PHONY: build
+build: install
+	npm exec turbo run build-module build-sls --output-logs=new-only
+
+package: prereqs
+	npm exec sls --version
+	npm exec sls package -- --stage ${STAGE}
+
+integration-tests:
+	NODE_EXTRA_CA_CERTS=certificates/insim-root-ca2.pub \
+	npm exec jest --runInBand --config=jest.config.int.js
+
+deploy: prereqs
+	npm exec sls --version
+	npm exec sls deploy -- --stage ${STAGE} --verbose
+
+get-environment-url: prereqs
+	PRINT_OUT=$$(npx sls info --stage ${STAGE}); \
+	OUT_URL=$$(echo $${PRINT_OUT} | grep -Eo "(http|https)://[a-zA-Z0-9./?=_%:-]*" | head -1); \
+	if [ "$${OUT_URL}" != "" ]; then \
+		echo $${OUT_URL}; \
+		exit 0; \
+	else \
+		exit 1; \
+	fi;
+
+undeploy: prereqs
+	npm exec sls --version
+	npm exec sls remove --stage ${STAGE}
+
+
+## INTERNAL TARGETS
+
+# Build serverless package (without deps)
+build-sls: prereqs
+	npm exec sls --version
+	npm exec sls package -- --stage ${STAGE}
+
+prereqs:
+	@if [ "${STAGE}" == "" ]; then \
+		echo "ENV STAGE is required"; \
+		exit 1; \
+	fi
+
+
+## DEVELOPER TARGETS
+integration-tests-local:
+	STAGE=local make integration-tests
+
+build-dev:
+	npm install
+	STAGE=dev make build
+
+start:
+	npm exec sls offline
+
+all: build-dev lint test

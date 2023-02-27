@@ -1,0 +1,26 @@
+SHELL := /bin/bash
+
+## This Makefile is used by all modules, so be careful when changing it and 
+## make sure to test all modules after changing it
+
+## Inherit targets from another Makefile
+%:
+	make -f ../../shared/makefiles/SLSMakefile $@
+
+## INTERNAL TARGETS
+
+# Build serverless package (without deps)
+build-module: prereqs
+	npm exec react-scripts build
+
+build-sls: prereqs
+	npm exec sls --version
+	npm exec sls package --stage ${STAGE}
+
+unit-tests:
+	CI=true npm exec react-scripts test --all --coverage
+
+## DEV TARGETS
+
+start:
+	npm exec react-scripts start
