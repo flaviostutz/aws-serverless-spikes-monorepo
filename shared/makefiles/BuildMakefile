@@ -49,7 +49,6 @@ install:
 all: build-dev lint test
 
 build-dev:
-	# update yarn.lock if necessary
 	npm install
 	make build
 
