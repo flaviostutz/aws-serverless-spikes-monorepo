@@ -14,11 +14,11 @@ build-module: prereqs
 	npm exec react-scripts build
 
 build-sls: prereqs
-	npm exec sls --version
-	npm exec sls package --stage ${STAGE}
+	npm exec sls -- --version
+	npm exec sls package -- --stage ${STAGE}
 
 unit-tests:
-	CI=true npm exec react-scripts test --all --coverage
+	CI=true npm exec react-scripts test -- --all --coverage
 
 ## DEV TARGETS
 

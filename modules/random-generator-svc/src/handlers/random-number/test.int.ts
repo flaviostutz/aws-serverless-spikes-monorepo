@@ -1,3 +1,4 @@
+/* eslint-disable no-process-env */
 import axios from 'axios';
 
 if (!process.env.BASE_URL) {
@@ -12,7 +13,6 @@ const axiosOpts = {
 };
 
 describe('test random number generator', () => {
-
   it('random number is variable', async () => {
     let resp = await axios.get(`${baseURL}/random/number`, axiosOpts);
     const v1 = resp.data;
@@ -27,5 +27,4 @@ describe('test random number generator', () => {
     expect(v1 !== v3).toBeTruthy();
     expect(v2 !== v3).toBeTruthy();
   });
-
 });

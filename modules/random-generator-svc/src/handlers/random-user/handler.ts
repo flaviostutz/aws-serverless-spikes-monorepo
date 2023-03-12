@@ -6,12 +6,15 @@ import httpHeaderNormalizer from '@middy/http-header-normalizer';
 import axios from 'axios';
 
 async function lambdaHandler(event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> {
+  // eslint-disable-next-line no-console
   console.log(event.body);
 
   let results = 5;
   if (event.queryStringParameters) {
-    const { presults } = <any>event.queryStringParameters;
-    results = presults;
+    const { presults } = event.queryStringParameters;
+    if (presults) {
+      results = parseInt(presults, 10);
+    }
   }
   const resp = await axios.get(`https://randomuser.me/api/?results=${results}`);
 

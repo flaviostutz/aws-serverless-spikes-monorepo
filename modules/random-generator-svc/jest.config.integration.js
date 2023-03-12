@@ -2,8 +2,6 @@
 module.exports = {
   testMatch: ['**/?(*.)+(int).+(ts|tsx|js)'],
   transform: {
-    '^.+\\.tsx?$': [
-      'esbuild-jest',
-    ],
+    '^.+\\.tsx?$': ['esbuild-jest'],
   },
 };

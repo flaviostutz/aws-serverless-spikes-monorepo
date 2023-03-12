@@ -12,18 +12,18 @@ SHELL := /bin/bash
 # run build-module and build-sls (including dependencies)
 .PHONY: build
 build: install
-	npm exec turbo run build-module build-sls --output-logs=new-only
+	npm exec turbo run build-module build-sls -- --output-logs=new-only
 
 package: prereqs
-	npm exec sls --version
+	npm exec sls -- --version
 	npm exec sls package -- --stage ${STAGE}
 
 integration-tests:
 	NODE_EXTRA_CA_CERTS=certificates/insim-root-ca2.pub \
-	npm exec jest --runInBand --config=jest.config.int.js
+	npm exec jest -- --runInBand --config=jest.config.int.js
 
 deploy: prereqs
-	npm exec sls --version
+	npm exec sls -- --version
 	npm exec sls deploy -- --stage ${STAGE} --verbose
 
 get-environment-url: prereqs
@@ -37,15 +37,15 @@ get-environment-url: prereqs
 	fi;
 
 undeploy: prereqs
-	npm exec sls --version
-	npm exec sls remove --stage ${STAGE}
+	npm exec sls -- --version
+	npm exec sls remove -- --stage ${STAGE}
 
 
 ## INTERNAL TARGETS
 
 # Build serverless package (without deps)
 build-sls: prereqs
-	npm exec sls --version
+	npm exec sls -- --version
 	npm exec sls package -- --stage ${STAGE}
 
 prereqs:

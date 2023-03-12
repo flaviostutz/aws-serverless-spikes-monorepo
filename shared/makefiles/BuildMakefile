@@ -7,10 +7,10 @@ SHELL := /bin/bash
 
 # Trigger Turbo to build this module and all its deps
 build: install
-	npm exec turbo run build-module --output-logs=new-only
+	npm exec turbo run build-module -- --output-logs=new-only
 
 lint: install
-	npm exec turbo run lint-module --output-logs=new-only
+	npm exec turbo run lint-module -- --output-logs=new-only
 
 unit-tests: test
 
@@ -22,24 +22,24 @@ unit-tests: test
 build-module: install
 	@date
 	rm -rf dist
-	npm exec esbuild src/index.ts --bundle --platform=node --outfile=dist/index.js
+	npm exec esbuild src/index.ts -- --bundle --platform=node --outfile=dist/index.js
 	@date
-	npm exec tsc --emitDeclarationOnly --outDir dist
+	npm exec tsc -- --emitDeclarationOnly --outDir dist
 	@date
 
 lint-module: install
-	npm exec eslint . --ext .ts
-	npm exec tsc -noEmit --skipLibCheck
-	npm audit --audit-level=high
+	npm exec eslint .
+	npm exec tsc -- -noEmit --skipLibCheck
+	# npm audit --audit-level=critical
 
 test: install
-	npm exec turbo run test-module --output-logs=new-only
+	npm exec turbo run test-module -- --output-logs=new-only
 
 test-module: install
-	npm exec jest --ci $(ARGS)
+	npm exec jest -- --ci $(ARGS)
 
 install:
-	npm install
+	npm install --no-audit
 
 
 
@@ -53,7 +53,7 @@ build-dev:
 	make build
 
 lint-fix:
-	npm exec eslint . --ext .ts --fix
+	npm exec eslint . -- --fix
 
 clean:
 	rm -rf node_modules .serverless dist

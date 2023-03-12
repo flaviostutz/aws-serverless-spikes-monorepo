@@ -5,6 +5,7 @@ import jsonBodyParser from '@middy/http-json-body-parser';
 import httpHeaderNormalizer from '@middy/http-header-normalizer';
 
 async function lambdaHandler(event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> {
+  // eslint-disable-next-line no-console
   console.log(event.body);
   const number = Math.round(Math.random() * 99999);
   return {
@@ -16,9 +17,7 @@ async function lambdaHandler(event: APIGatewayProxyEvent): Promise<APIGatewayPro
   };
 }
 
-
 export const handler = middy(lambdaHandler)
   .use(jsonBodyParser())
   .use(httpHeaderNormalizer())
   .use(cors());
-

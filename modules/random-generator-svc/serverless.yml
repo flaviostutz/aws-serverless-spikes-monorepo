@@ -134,8 +134,8 @@ plugins:
   - serverless-reqvalidator-plugin # for validating request schema
   - serverless-v2-aws-documentation # for documenting aws api gateway
   - serverless-openapi-documentation-v2 # for exporting openapi/swagger
-  
-custom:	
+
+custom:
   # https://www.serverless.com/plugins/serverless-openapi-documentation
   documentation:
     version: '1'
