@@ -58,5 +58,5 @@ lint-fix:
 clean:
 	rm -rf node_modules .serverless dist
 
-upgrade-deps:
+bump-deps:
 	npx npm-check-updates -t minor -u

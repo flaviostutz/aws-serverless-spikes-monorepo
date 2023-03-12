@@ -9,10 +9,10 @@ provider:
   memorySize: 128
   logRetentionInDays: 7
   tags:
-    GITHUB_ACTOR: ${env:GITHUB_ACTOR}
-    GITHUB_REF: ${env:GITHUB_REF}
-    GITHUB_COMMIT_URL: http://github.com/${env:GITHUB_REPOSITORY}/commit/${env:GITHUB_SHA}
-    GITHUB_ACTION_URL: http://github.com/${env:GITHUB_REPOSITORY}/actions/runs/${env:GITHUB_RUN_ID}/attempts/${env:GITHUB_RUN_ATTEMPT}
+    GITHUB_ACTOR: ${env:GITHUB_ACTOR, ''}
+    GITHUB_REF: ${env:GITHUB_REF, ''}
+    GITHUB_COMMIT_URL: http://github.com/${env:GITHUB_REPOSITORY, ''}/commit/${env:GITHUB_SHA, ''}
+    GITHUB_ACTION_URL: http://github.com/${env:GITHUB_REPOSITORY, ''}/actions/runs/${env:GITHUB_RUN_ID, ''}/attempts/${env:GITHUB_RUN_ATTEMPT, ''}
   tracing:
     lambda: true
     apiGateway: true

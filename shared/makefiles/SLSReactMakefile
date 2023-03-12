@@ -11,7 +11,7 @@ SHELL := /bin/bash
 
 # Build serverless package (without deps)
 build-module: prereqs
-	npm exec react-scripts build
+	BUILD_PATH='./dist' npm exec react-scripts build
 
 build-sls: prereqs
 	npm exec sls -- --version

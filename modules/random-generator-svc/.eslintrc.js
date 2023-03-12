@@ -1,7 +1,7 @@
 // eslint-disable-next-line import/no-commonjs
 module.exports = {
   parserOptions: {
-    project: ['./tsconfig.eslint.json'],
+    project: ['./tsconfig.json'],
     tsconfigRootDir: __dirname,
   },
   extends: '@stutzlab/eslint-config',

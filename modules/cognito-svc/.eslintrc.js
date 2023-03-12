@@ -1,12 +1,8 @@
-/* eslint-disable @typescript-eslint/no-require-imports */
-/* eslint-disable import/no-commonjs */
-const eslintConfig = require('../../shared/js/lint/eslint-config');
-
-module.exports = { ...eslintConfig, ...{
+// eslint-disable-next-line import/no-commonjs
+module.exports = {
   parserOptions: {
-    // needed by some typescript rules
-    project: ["./tsconfig.eslint.json"],
+    project: ['./tsconfig.json'],
     tsconfigRootDir: __dirname,
-    sourceType: "module",
-  }},
+  },
+  extends: '@stutzlab/eslint-config',
 };

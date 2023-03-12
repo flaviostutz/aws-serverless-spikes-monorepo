@@ -6,7 +6,8 @@
     "modules/*",
     "shared/js/*"
   ],
-  "dependencies": {
-    "turbo": "^1.8.3"
+  "devDependencies": {
+    "turbo": "^1.8.3",
+    "monolint": "^0.3.0"
   }
 }

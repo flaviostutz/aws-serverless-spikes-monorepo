@@ -60,7 +60,6 @@ integration-tests-local:
 	STAGE=local make integration-tests
 
 build-dev:
-	npm install
 	STAGE=dev make build
 
 start:

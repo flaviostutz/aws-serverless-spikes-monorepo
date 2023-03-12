@@ -13,8 +13,11 @@
     "preserveConstEnums": true
   },
   "include": [
-    "src/**/*"
-  ],
+    "src/**/*",
+    ".eslintrc.js",
+    "jest.config.js",
+    "jest.config.integration.js"
+],
   "exclude": [
     "node_modules",
     "**/*.spec.ts"
